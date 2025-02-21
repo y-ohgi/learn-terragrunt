@@ -1,3 +1,3 @@
 data "aws_availability_zones" "this" {
-    state = "available"
+  state = "available"
 }
