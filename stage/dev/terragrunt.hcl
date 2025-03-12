@@ -1,3 +1,17 @@
+include "root" {
+  path = find_in_parent_folders()
+}
+
+remote_state {
+  backend = "s3"
+  config = {
+    bucket         = "${get_env("TF_STATE_BUCKET")}"
+    key            = "${path_relative_to_include()}/terraform.tfstate"
+    region         = "ap-northeast-1"
+    encrypt        = true
+  }
+}
+
 inputs = {
   name = "dev"
 }
